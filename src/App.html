@@ -60,8 +60,8 @@
 	}
 	
 	// computed	
-	const numActive = _ => items.filter(item => !item.completed).length;
-	const numCompleted = _ => items.filter(item => item.completed).length;
+	const numActive = () => items.filter(item => !item.completed).length;
+	const numCompleted = () => items.filter(item => item.completed).length;
 		
 	// helper
 	const filter = (item, currentFilter) => {
