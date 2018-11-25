@@ -34,10 +34,10 @@ export default {
     // consult the documentation for details:
     // https://github.com/rollup/rollup-plugin-commonjs
     resolve(),
-    commonjs(),
+    commonjs()
 
     // If we're building for production (npm run build
     // instead of npm run dev), minify
-    production && terser()
+    // production && terser()
   ]
 };

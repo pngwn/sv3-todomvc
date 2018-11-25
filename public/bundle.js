@@ -1,2 +1,903 @@
-var Todo=function(){"use strict";function e(e,t){e.appendChild(t)}function t(e,t,n){e.insertBefore(t,n)}function n(e){e.parentNode.removeChild(e)}function i(e){return document.createElement(e)}function r(e){return document.createTextNode(e)}function c(){return document.createComment("")}function l(e,t,n,i){e.addEventListener(t,n,i)}function o(e,t,n,i){e.removeEventListener(t,n,i)}function s(e,t,n){null==n?e.removeAttribute(t):e.setAttribute(t,n)}function a(e,t){e.data=""+t}function d(){}function u(e){e()}function h(){return Object.create(null)}function m(e){e.forEach(u)}function $(e){return"function"==typeof e}function f(e,t){return e!=e?t==t:e!==t||e&&"object"==typeof e||"function"==typeof e}let p=!1,g=[];const _=[],k=[],v={enabled:!1};function y(e){var t;g.push(e),p||(p=!0,t=N,Promise.resolve().then(()=>{p&&t()}))}function b(e){k.push(e)}function N(){const e=new Set;do{for(;g.length;)g.shift().$$update();for(;_.length;)_.pop()();for(;k.length;){const t=k.pop();e.has(t)||(t(),e.add(t))}}while(g.length);p=!1}let w;function F(e){w.$$onMount.push(e)}function x(e){w.$$afterRender.push(e)}class C{constructor(e,t,n,i){this.$$beforeRender=[],this.$$onMount=[],this.$$afterRender=[],this.$$onDestroy=[],this.$$bindings=h(),this.$$callbacks=h(),this.$$slotted=e.slots||{},w=this;const[r,c,l]=t(this,e=>{this.$$make_dirty(e),this.$$bindings[e]&&this.$$bindings[e](r()[e])});this.$$={get_state:r,inject_props:c,inject_refs:l,not_equal:i},this.$$refs={},this.$$dirty=null,this.$$bindingGroups=[],e.props&&this.$$.inject_props(e.props),m(this.$$beforeRender),this.$$fragment=n(this,this.$$.get_state()),e.target&&(v.enabled=!!e.intro,this.$$mount(e.target,e.anchor,e.hydrate),N(),v.enabled=!0)}$destroy(){this.$$destroy(!0),this.$$update=this.$$destroy=d}$on(e,t){const n=this.$$callbacks[e]||(this.$$callbacks[e]=[]);return n.push(t),()=>{const e=n.indexOf(t);-1!==e&&n.splice(e,1)}}$set(e){if(this.$$){const t=this.$$.get_state();this.$$.inject_props(e);for(const n in e)this.$$.not_equal(t[n],e[n])&&this.$$make_dirty(n)}}$$bind(e,t){this.$$bindings[e]=t,t(this.$$.get_state()[e])}$$destroy(e){this.$$&&(m(this.$$onDestroy),this.$$fragment.d(e),this.$$onDestroy=this.$$fragment=null,this.$$.get_state=(()=>({})))}$$make_dirty(e){this.$$dirty||(y(this),this.$$dirty={}),this.$$dirty[e]=!0}$$mount(e,t,n){var i;n?(this.$$fragment.l((i=e,Array.from(i.childNodes))),this.$$fragment.m(e,t)):(this.$$fragment.c(),this.$$fragment[this.$$fragment.i?"i":"m"](e,t)),this.$$.inject_refs(this.$$refs),b(()=>{const e=this.$$onMount.map(u).filter($);this.$$onDestroy?this.$$onDestroy.push(...e):m(e),this.$$onMount=[]}),this.$$afterRender.forEach(b)}$$update(){m(this.$$beforeRender),this.$$fragment.p(this.$$dirty,this.$$.get_state()),this.$$.inject_refs(this.$$refs),this.$$dirty=null,this.$$afterRender.forEach(b)}}function R(e,t,n){const i=Object.create(e);return i.item=t[n],i.each_value=t,i.index=n,i}function A(c,d){for(var u,h,m,$,f,p,g,_,k,v,y,b,N,w,F,x,C,A,j,E,S,O,T,q,L,I,J,B,G,H,K,P,W=d.numActive(),z=1===d.numActive()?"item":"items",Q=d.items,U=[],V=0;V<Q.length;V+=1)U[V]=D(c,R(d,Q,V));var X=d.numCompleted()&&M(c,d);return{c(){u=i("section"),h=i("input"),$=r("\n\t\t"),(f=i("label")).textContent="Mark all as complete",p=r("\n\n\t\t"),g=i("ul");for(var e=0;e<U.length;e+=1)U[e].c();_=r("\n\n\t\t"),k=i("footer"),v=i("span"),y=i("strong"),b=r(W),N=r(" "),w=r(z),F=r(" left"),x=r("\n\n\t\t\t"),C=i("ul"),A=i("li"),j=i("a"),E=r("All"),O=r("\n\t\t\t\t"),T=i("li"),q=i("a"),L=r("Active"),J=r("\n\t\t\t\t"),B=i("li"),G=i("a"),H=r("Completed"),P=r("\n\n\t\t\t"),X&&X.c(),l(h,"change",d.change_handler),h.id="toggle-all",h.className="toggle-all",s(h,"type","checkbox"),h.checked=m=d.numCompleted()===d.items.length,f.htmlFor="toggle-all",g.className="todo-list",v.className="todo-count",l(j,"click",d.click_handler_1),j.className=S="all"===d.currentFilter?"selected":"",j.href="/",l(q,"click",d.click_handler_2),q.className=I="active"===d.currentFilter?"selected":"",q.href="/active",l(G,"click",d.click_handler_3),G.className=K="completed"===d.currentFilter?"selected":"",G.href="/completed",C.className="filters",k.className="footer",u.className="main"},m(n,i){t(n,u,i),e(u,h),e(u,$),e(u,f),e(u,p),e(u,g);for(var r=0;r<U.length;r+=1)U[r].m(g,null);e(u,_),e(u,k),e(k,v),e(v,y),e(y,b),e(v,N),e(v,w),e(v,F),e(k,x),e(k,C),e(C,A),e(A,j),e(j,E),e(C,O),e(C,T),e(T,q),e(q,L),e(C,J),e(C,B),e(B,G),e(G,H),e(k,P),X&&X.m(k,null)},p(e,t){if(m!==(m=t.numCompleted()===t.items.length)&&(h.checked=m),e.filter||e.items||e.currentFilter||e.editing){Q=t.items;for(var n=0;n<Q.length;n+=1){const i=R(t,Q,n);U[n]?U[n].p(e,i):(U[n]=D(c,i),U[n].c(),U[n].m(g,null))}for(;n<U.length;n+=1)U[n].d(1);U.length=Q.length}W!==(W=t.numActive())&&a(b,W),z!==(z=1===t.numActive()?"item":"items")&&a(w,z),e.currentFilter&&S!==(S="all"===t.currentFilter?"selected":"")&&(j.className=S),e.currentFilter&&I!==(I="active"===t.currentFilter?"selected":"")&&(q.className=I),e.currentFilter&&K!==(K="completed"===t.currentFilter?"selected":"")&&(G.className=K),t.numCompleted()?X||((X=M(c,t)).c(),X.m(k,null)):X&&(X.d(1),X=null)},d(e){e&&n(u),o(h,"change",d.change_handler),function(e,t){for(var n=0;n<e.length;n+=1)e[n]&&e[n].d(t)}(U,e),o(j,"click",d.click_handler_1),o(q,"click",d.click_handler_2),o(G,"click",d.click_handler_3),X&&X.d()}}}function j(c,d){var u,h,m,$,f,p,g,_,k,v,y=d.item.description;function b(){d.input_change_handler.call(this,d)}function N(){return d.dblclick_handler(d)}function w(){return d.click_handler(d)}var F=d.editing===d.index&&E(c,d);return{c(){u=i("li"),h=i("div"),m=i("input"),$=r("\n\t\t\t\t\t\t\t"),f=i("label"),p=r(y),g=r("\n\t\t\t\t\t\t\t"),_=i("button"),k=r("\n\n\t\t\t\t\t\t"),F&&F.c(),l(m,"change",b),m.className="toggle",s(m,"type","checkbox"),l(f,"dblclick",N),l(_,"click",w),_.className="destroy",h.className="view",u.className=v=(d.item.completed?"completed":"")+" "+(d.editing===d.index?"editing":"")},m(n,i){t(n,u,i),e(u,h),e(h,m),m.checked=d.item.completed,e(h,$),e(h,f),e(f,p),e(h,g),e(h,_),e(u,k),F&&F.m(u,null)},p(e,t){d=t,e.items&&(m.checked=d.item.completed),e.items&&y!==(y=d.item.description)&&a(p,y),d.editing===d.index?F?F.p(e,d):((F=E(c,d)).c(),F.m(u,null)):F&&(F.d(1),F=null),(e.items||e.editing)&&v!==(v=(d.item.completed?"completed":"")+" "+(d.editing===d.index?"editing":""))&&(u.className=v)},d(e){e&&n(u),o(m,"change",b),o(f,"dblclick",N),o(_,"click",w),F&&F.d()}}}function E(e,r){var c,s;return{c(){l(c=i("input"),"keydown",r.keydown_handler_1),l(c,"blur",r.blur_handler),c.value=s=r.item.description,c.id="edit",c.className="edit",c.autofocus=!0},m(e,n){t(e,c,n),c.focus()},p(e,t){e.items&&s!==(s=t.item.description)&&(c.value=s)},d(e){e&&n(c),o(c,"keydown",r.keydown_handler_1),o(c,"blur",r.blur_handler)}}}function D(e,i){var r,l=i.filter(i.item,i.currentFilter)&&j(e,i);return{c(){l&&l.c(),r=c()},m(e,n){l&&l.m(e,n),t(e,r,n)},p(t,n){n.filter(n.item,n.currentFilter)?l?l.p(t,n):((l=j(e,n)).c(),l.m(r.parentNode,r)):l&&(l.d(1),l=null)},d(e){l&&l.d(e),e&&n(r)}}}function M(e,r){var c;return{c(){(c=i("button")).textContent="Clear completed",l(c,"click",r.click_handler_4),c.className="clear-completed"},m(e,n){t(e,c,n)},d(e){e&&n(c),o(c,"click",r.click_handler_4)}}}function S(s,a){var d,h,m,$,f,p,g,_=a.items.length>0&&A(s,a);return{c(){d=i("header"),(h=i("h1")).textContent="todos",m=r("\n\t"),$=i("input"),f=r("\n\n"),_&&_.c(),p=c(),l($,"keydown",a.keydown_handler),$.className="new-todo",$.placeholder="What needs to be done?",$.autofocus=!0,d.className="header"},m(n,i){t(n,d,i),e(d,h),e(d,m),e(d,$),s.$$refs.todoRef=$,t(n,f,i),_&&_.m(n,i),t(n,p,i),g=!0,$.focus()},p(e,t){t.items.length>0?_?_.p(e,t):((_=A(s,t)).c(),_.m(p.parentNode,p)):_&&(_.d(1),_=null)},i(e,t){g||this.m(e,t)},o:u,d(e){e&&n(d),o($,"keydown",a.keydown_handler),s.$$refs.todoRef===$&&(s.$$refs.todoRef=null,s.$$.inject_refs(s.$$refs)),e&&n(f),_&&_.d(e),e&&n(p)}}}function O(e,t){let n,i,r=[],c="all";try{r=JSON.parse(localStorage.getItem("todos-svelte"))||[],t("items")}catch(e){r=[],t("items")}F(()=>{const e=()=>{c="all",t("currentFilter"),"#/active"===window.location.hash?(c="active",t("currentFilter")):"#/completed"===window.location.hash&&(c="completed",t("currentFilter"))};window.addEventListener("hashchange",e),e()}),x(()=>{try{localStorage.setItem("todos-svelte",JSON.stringify(r))}catch(e){}});const l=e=>e.blur(),o=()=>{const e=n=null;return t("editing"),e},s=()=>{const e=r=r.filter(e=>!e.completed);return t("items"),e},a=e=>{const i=n=e;return t("editing"),i},u=e=>{r=[...r,{description:e,completed:!1}],t("items"),i.value="",t("todoRef")},h=e=>{const n=r=r.splice(e,1);return t("items"),n},m=e=>{const i=r=r.map((t,i)=>i===n?{...t,description:e}:t);return t("items"),i},$=e=>{const n=r=r.map(t=>({...t,completed:e}));return t("items"),n},f=(e,t)=>{"Enter"===t&&(l(e),o()),"Escape"===t&&o()},p=(e,t)=>{e.preventDefault(),window.location.hash=t};return[()=>({items:r,currentFilter:c,editing:n,todoRef:i,numActive:()=>r.filter(e=>!e.completed).length,numCompleted:()=>r.filter(e=>e.completed).length,filter:(e,t)=>"all"===t||("completed"===t?e.completed:"active"===t?!e.completed:void 0),blurNode:l,cancel:o,clearCompleted:s,edit:a,newTodo:u,remove:h,submit:m,toggleAll:$,handleKeycode:f,updateHash:p,onMount:F,afterRender:x,keydown_handler:function({key:e}){return"Enter"===e?u(this.value):null},change_handler:function(){return $(this.checked)},dblclick_handler:function({index:e}){return a(e)},click_handler:function({index:e}){return h(e)},keydown_handler_1:function({key:e}){return f(this,e)},blur_handler:function(e){return m(this.value)},click_handler_1:function(e){return p(e,"#/")},click_handler_2:function(e){return p(e,"#/active")},click_handler_3:function(e){return p(e,"#/completed")},click_handler_4:function(){return s()},input_change_handler:function({item:e,each_value:n,index:i}){n[i].completed=this.checked,t("items")}}),d,e=>{i=e.todoRef}]}return new class extends C{constructor(e){super(e,O,S,f)}}({target:document.querySelector(".todoapp"),name:"Todo"})}();
+var Todo = (function () {
+	'use strict';
+
+	function append(target, node) {
+		target.appendChild(node);
+	}
+
+	function insert(target, node, anchor) {
+		target.insertBefore(node, anchor);
+	}
+
+	function detachNode(node) {
+		node.parentNode.removeChild(node);
+	}
+
+	function destroyEach(iterations, detach) {
+		for (var i = 0; i < iterations.length; i += 1) {
+			if (iterations[i]) iterations[i].d(detach);
+		}
+	}
+
+	function createElement(name) {
+		return document.createElement(name);
+	}
+
+	function createText(data) {
+		return document.createTextNode(data);
+	}
+
+	function createComment() {
+		return document.createComment('');
+	}
+
+	function addListener(node, event, handler, options) {
+		node.addEventListener(event, handler, options);
+	}
+
+	function removeListener(node, event, handler, options) {
+		node.removeEventListener(event, handler, options);
+	}
+
+	function setAttribute(node, attribute, value) {
+		if (value == null) node.removeAttribute(attribute);
+		else node.setAttribute(attribute, value);
+	}
+
+	function children (element) {
+		return Array.from(element.childNodes);
+	}
+
+	function setData(text, data) {
+		text.data = '' + data;
+	}
+
+	function noop() {}
+
+	function run(fn) {
+		fn();
+	}
+
+	function blankObject() {
+		return Object.create(null);
+	}
+
+	function run_all(fns) {
+		fns.forEach(run);
+	}
+
+	function is_function(thing) {
+		return typeof thing === 'function';
+	}
+
+	function safe_not_equal(a, b) {
+		return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
+	}
+
+	let update_scheduled = false;
+
+	let dirty_components = [];
+	const binding_callbacks = [];
+	const render_callbacks = [];
+
+	const intro = { enabled: false };
+
+	function schedule_update(component) {
+		dirty_components.push(component);
+		if (!update_scheduled) {
+			update_scheduled = true;
+			queue_microtask(flush);
+		}
+	}
+
+	function add_render_callback(fn) {
+		render_callbacks.push(fn);
+	}
+
+	function flush() {
+		const seen_callbacks = new Set();
+
+		do {
+			// first, call beforeRender functions
+			// and update components
+			while (dirty_components.length) {
+				dirty_components.shift().$$update();
+			}
+
+			while (binding_callbacks.length) binding_callbacks.pop()();
+
+			// then, once components are updated, call
+			// afterRender functions. This may cause
+			// subsequent updates...
+			while (render_callbacks.length) {
+				const callback = render_callbacks.pop();
+				if (!seen_callbacks.has(callback)) {
+					callback();
+
+					// ...so guard against infinite loops
+					seen_callbacks.add(callback);
+				}
+			}
+		} while (dirty_components.length);
+
+		update_scheduled = false;
+	}
+
+	function queue_microtask(callback) {
+		Promise.resolve().then(() => {
+			if (update_scheduled) callback();
+		});
+	}
+
+	let current_component;
+
+	function set_current_component(component) {
+		current_component = component;
+	}
+
+	function onMount(fn) {
+		current_component.$$onMount.push(fn);
+	}
+
+	function afterRender(fn) {
+		current_component.$$afterRender.push(fn);
+	}
+
+	class $$Component {
+		constructor(options, init, create_fragment, not_equal$$1) {
+			this.$$beforeRender = [];
+			this.$$onMount = [];
+			this.$$afterRender = [];
+			this.$$onDestroy = [];
+
+			this.$$bindings = blankObject();
+			this.$$callbacks = blankObject();
+			this.$$slotted = options.slots || {};
+
+			set_current_component(this);
+			const [get_state, inject_props, inject_refs] = init(
+				this,
+				key => {
+					this.$$make_dirty(key);
+					if (this.$$bindings[key]) this.$$bindings[key](get_state()[key]);
+				}
+			);
+
+			this.$$ = { get_state, inject_props, inject_refs, not_equal: not_equal$$1 };
+
+			this.$$refs = {};
+
+			this.$$dirty = null;
+			this.$$bindingGroups = []; // TODO find a way to not have this here?
+
+			if (options.props) {
+				this.$$.inject_props(options.props);
+			}
+
+			run_all(this.$$beforeRender);
+			this.$$fragment = create_fragment(this, this.$$.get_state());
+
+			if (options.target) {
+				intro.enabled = !!options.intro;
+				this.$$mount(options.target, options.anchor, options.hydrate);
+
+				flush();
+				intro.enabled = true;
+			}
+		}
+
+		$destroy() {
+			this.$$destroy(true);
+			this.$$update = this.$$destroy = noop;
+		}
+
+		$on(type, callback) {
+			const callbacks = (this.$$callbacks[type] || (this.$$callbacks[type] = []));
+			callbacks.push(callback);
+
+			return () => {
+				const index = callbacks.indexOf(callback);
+				if (index !== -1) callbacks.splice(index, 1);
+			};
+		}
+
+		$set(values) {
+			if (this.$$) {
+				const state = this.$$.get_state();
+				this.$$.inject_props(values);
+				for (const key in values) {
+					if (this.$$.not_equal(state[key], values[key])) this.$$make_dirty(key);
+				}
+			}
+		}
+
+		$$bind(name, callback) {
+			this.$$bindings[name] = callback;
+			callback(this.$$.get_state()[name]);
+		}
+
+		$$destroy(detach) {
+			if (this.$$) {
+				run_all(this.$$onDestroy);
+				this.$$fragment.d(detach);
+
+				// TODO null out other refs, including this.$$ (but need to
+				// preserve final state?)
+				this.$$onDestroy = this.$$fragment = null;
+				this.$$.get_state = () => ({});
+			}
+		}
+
+		$$make_dirty(key) {
+			if (!this.$$dirty) {
+				schedule_update(this);
+				this.$$dirty = {};
+			}
+			this.$$dirty[key] = true;
+		}
+
+		$$mount(target, anchor, hydrate) {
+			if (hydrate) {
+				this.$$fragment.l(children(target));
+				this.$$fragment.m(target, anchor); // TODO can we avoid moving DOM?
+			} else {
+				this.$$fragment.c();
+				this.$$fragment[this.$$fragment.i ? 'i' : 'm'](target, anchor);
+			}
+
+			this.$$.inject_refs(this.$$refs);
+
+			// onMount happens after the initial afterRender. Because
+			// afterRender callbacks happen in reverse order (inner first)
+			// we schedule onMount callbacks before afterRender callbacks
+			add_render_callback(() => {
+				const onDestroy$$1 = this.$$onMount.map(run).filter(is_function);
+				if (this.$$onDestroy) {
+					this.$$onDestroy.push(...onDestroy$$1);
+				} else {
+					// Edge case — component was destroyed immediately,
+					// most likely as a result of a binding initialising
+					run_all(onDestroy$$1);
+				}
+				this.$$onMount = [];
+			});
+
+			this.$$afterRender.forEach(add_render_callback);
+		}
+
+		$$update() {
+			run_all(this.$$beforeRender);
+			this.$$fragment.p(this.$$dirty, this.$$.get_state());
+			this.$$.inject_refs(this.$$refs);
+			this.$$dirty = null;
+
+			this.$$afterRender.forEach(add_render_callback);
+		}
+	}
+
+	/* src/App.html generated by Svelte v2.15.1 */
+
+	function get_each_context(ctx, list, i) {
+		const child_ctx = Object.create(ctx);
+		child_ctx.item = list[i];
+		child_ctx.each_value = list;
+		child_ctx.index = i;
+		return child_ctx;
+	}
+
+	// (6:0) {#if items.length > 0}
+	function create_if_block(component, ctx) {
+		var section, input, input_checked_value, text0, label, text2, ul0, text3, footer, span, strong, text4_value = ctx.numActive(), text4, text5, text6_value = ctx.numActive() === 1 ? 'item' : 'items', text6, text7, text8, ul1, li0, a0, text9, a0_class_value, text10, li1, a1, text11, a1_class_value, text12, li2, a2, text13, a2_class_value, text14;
+
+		var each_value = ctx.items;
+
+		var each_blocks = [];
+
+		for (var i = 0; i < each_value.length; i += 1) {
+			each_blocks[i] = create_each_block(component, get_each_context(ctx, each_value, i));
+		}
+
+		var if_block = (ctx.numCompleted()) && create_if_block_1(component, ctx);
+
+		return {
+			c() {
+				section = createElement("section");
+				input = createElement("input");
+				text0 = createText("\n\t\t");
+				label = createElement("label");
+				label.textContent = "Mark all as complete";
+				text2 = createText("\n\n\t\t");
+				ul0 = createElement("ul");
+
+				for (var i = 0; i < each_blocks.length; i += 1) {
+					each_blocks[i].c();
+				}
+
+				text3 = createText("\n\n\t\t");
+				footer = createElement("footer");
+				span = createElement("span");
+				strong = createElement("strong");
+				text4 = createText(text4_value);
+				text5 = createText(" ");
+				text6 = createText(text6_value);
+				text7 = createText(" left");
+				text8 = createText("\n\n\t\t\t");
+				ul1 = createElement("ul");
+				li0 = createElement("li");
+				a0 = createElement("a");
+				text9 = createText("All");
+				text10 = createText("\n\t\t\t\t");
+				li1 = createElement("li");
+				a1 = createElement("a");
+				text11 = createText("Active");
+				text12 = createText("\n\t\t\t\t");
+				li2 = createElement("li");
+				a2 = createElement("a");
+				text13 = createText("Completed");
+				text14 = createText("\n\n\t\t\t");
+				if (if_block) if_block.c();
+				addListener(input, "change", ctx.change_handler);
+				input.id = "toggle-all";
+				input.className = "toggle-all";
+				setAttribute(input, "type", "checkbox");
+				input.checked = input_checked_value = ctx.numCompleted() === ctx.items.length;
+				label.htmlFor = "toggle-all";
+				ul0.className = "todo-list";
+				span.className = "todo-count";
+				addListener(a0, "click", ctx.click_handler_1);
+				a0.className = a0_class_value = ctx.currentFilter === 'all' ? 'selected' : '';
+				a0.href = "/";
+				addListener(a1, "click", ctx.click_handler_2);
+				a1.className = a1_class_value = ctx.currentFilter === 'active' ? 'selected' : '';
+				a1.href = "/active";
+				addListener(a2, "click", ctx.click_handler_3);
+				a2.className = a2_class_value = ctx.currentFilter === 'completed' ? 'selected' : '';
+				a2.href = "/completed";
+				ul1.className = "filters";
+				footer.className = "footer";
+				section.className = "main";
+			},
+
+			m(target, anchor) {
+				insert(target, section, anchor);
+				append(section, input);
+				append(section, text0);
+				append(section, label);
+				append(section, text2);
+				append(section, ul0);
+
+				for (var i = 0; i < each_blocks.length; i += 1) {
+					each_blocks[i].m(ul0, null);
+				}
+
+				append(section, text3);
+				append(section, footer);
+				append(footer, span);
+				append(span, strong);
+				append(strong, text4);
+				append(span, text5);
+				append(span, text6);
+				append(span, text7);
+				append(footer, text8);
+				append(footer, ul1);
+				append(ul1, li0);
+				append(li0, a0);
+				append(a0, text9);
+				append(ul1, text10);
+				append(ul1, li1);
+				append(li1, a1);
+				append(a1, text11);
+				append(ul1, text12);
+				append(ul1, li2);
+				append(li2, a2);
+				append(a2, text13);
+				append(footer, text14);
+				if (if_block) if_block.m(footer, null);
+			},
+
+			p(changed, ctx) {
+				if (input_checked_value !== (input_checked_value = ctx.numCompleted() === ctx.items.length)) {
+					input.checked = input_checked_value;
+				}
+
+				if (changed.filter || changed.items || changed.currentFilter || changed.editing) {
+					each_value = ctx.items;
+
+					for (var i = 0; i < each_value.length; i += 1) {
+						const child_ctx = get_each_context(ctx, each_value, i);
+
+						if (each_blocks[i]) {
+							each_blocks[i].p(changed, child_ctx);
+						} else {
+							each_blocks[i] = create_each_block(component, child_ctx);
+							each_blocks[i].c();
+							each_blocks[i].m(ul0, null);
+						}
+					}
+
+					for (; i < each_blocks.length; i += 1) {
+						each_blocks[i].d(1);
+					}
+					each_blocks.length = each_value.length;
+				}
+
+				if (text4_value !== (text4_value = ctx.numActive())) {
+					setData(text4, text4_value);
+				}
+
+				if (text6_value !== (text6_value = ctx.numActive() === 1 ? 'item' : 'items')) {
+					setData(text6, text6_value);
+				}
+
+				if ((changed.currentFilter) && a0_class_value !== (a0_class_value = ctx.currentFilter === 'all' ? 'selected' : '')) {
+					a0.className = a0_class_value;
+				}
+
+				if ((changed.currentFilter) && a1_class_value !== (a1_class_value = ctx.currentFilter === 'active' ? 'selected' : '')) {
+					a1.className = a1_class_value;
+				}
+
+				if ((changed.currentFilter) && a2_class_value !== (a2_class_value = ctx.currentFilter === 'completed' ? 'selected' : '')) {
+					a2.className = a2_class_value;
+				}
+
+				if (ctx.numCompleted()) {
+					if (!if_block) {
+						if_block = create_if_block_1(component, ctx);
+						if_block.c();
+						if_block.m(footer, null);
+					}
+				} else if (if_block) {
+					if_block.d(1);
+					if_block = null;
+				}
+			},
+
+			d(detach) {
+				if (detach) {
+					detachNode(section);
+				}
+
+				removeListener(input, "change", ctx.change_handler);
+
+				destroyEach(each_blocks, detach);
+
+				removeListener(a0, "click", ctx.click_handler_1);
+				removeListener(a1, "click", ctx.click_handler_2);
+				removeListener(a2, "click", ctx.click_handler_3);
+				if (if_block) if_block.d();
+			}
+		};
+	}
+
+	// (13:4) {#if filter(item, currentFilter)}
+	function create_if_block_2(component, ctx) {
+		var li, div, input, text0, label, text1_value = ctx.item.description, text1, text2, button, text3, li_class_value;
+
+		function input_change_handler() {
+			ctx.input_change_handler.call(this, ctx);
+		}
+
+		function dblclick_handler() {
+			return ctx.dblclick_handler(ctx);
+		}
+
+		function click_handler() {
+			return ctx.click_handler(ctx);
+		}
+
+		var if_block = (ctx.editing === ctx.index) && create_if_block_3(component, ctx);
+
+		return {
+			c() {
+				li = createElement("li");
+				div = createElement("div");
+				input = createElement("input");
+				text0 = createText("\n\t\t\t\t\t\t\t");
+				label = createElement("label");
+				text1 = createText(text1_value);
+				text2 = createText("\n\t\t\t\t\t\t\t");
+				button = createElement("button");
+				text3 = createText("\n\n\t\t\t\t\t\t");
+				if (if_block) if_block.c();
+				addListener(input, "change", input_change_handler);
+				input.className = "toggle";
+				setAttribute(input, "type", "checkbox");
+				addListener(label, "dblclick", dblclick_handler);
+				addListener(button, "click", click_handler);
+				button.className = "destroy";
+				div.className = "view";
+				li.className = li_class_value = "" + (ctx.item.completed ? 'completed' : '') + " " + (ctx.editing === ctx.index ? 'editing' : '');
+			},
+
+			m(target, anchor) {
+				insert(target, li, anchor);
+				append(li, div);
+				append(div, input);
+
+				input.checked = ctx.item.completed;
+
+				append(div, text0);
+				append(div, label);
+				append(label, text1);
+				append(div, text2);
+				append(div, button);
+				append(li, text3);
+				if (if_block) if_block.m(li, null);
+			},
+
+			p(changed, new_ctx) {
+				ctx = new_ctx;
+				if (changed.items) input.checked = ctx.item.completed;
+				if ((changed.items) && text1_value !== (text1_value = ctx.item.description)) {
+					setData(text1, text1_value);
+				}
+
+				if (ctx.editing === ctx.index) {
+					if (if_block) {
+						if_block.p(changed, ctx);
+					} else {
+						if_block = create_if_block_3(component, ctx);
+						if_block.c();
+						if_block.m(li, null);
+					}
+				} else if (if_block) {
+					if_block.d(1);
+					if_block = null;
+				}
+
+				if ((changed.items || changed.editing) && li_class_value !== (li_class_value = "" + (ctx.item.completed ? 'completed' : '') + " " + (ctx.editing === ctx.index ? 'editing' : ''))) {
+					li.className = li_class_value;
+				}
+			},
+
+			d(detach) {
+				if (detach) {
+					detachNode(li);
+				}
+
+				removeListener(input, "change", input_change_handler);
+				removeListener(label, "dblclick", dblclick_handler);
+				removeListener(button, "click", click_handler);
+				if (if_block) if_block.d();
+			}
+		};
+	}
+
+	// (21:6) {#if editing === index}
+	function create_if_block_3(component, ctx) {
+		var input, input_value_value;
+
+		return {
+			c() {
+				input = createElement("input");
+				addListener(input, "keydown", ctx.keydown_handler_1);
+				addListener(input, "blur", ctx.blur_handler);
+				input.value = input_value_value = ctx.item.description;
+				input.id = "edit";
+				input.className = "edit";
+				input.autofocus = true;
+			},
+
+			m(target, anchor) {
+				insert(target, input, anchor);
+				input.focus();
+			},
+
+			p(changed, ctx) {
+				if ((changed.items) && input_value_value !== (input_value_value = ctx.item.description)) {
+					input.value = input_value_value;
+				}
+			},
+
+			d(detach) {
+				if (detach) {
+					detachNode(input);
+				}
+
+				removeListener(input, "keydown", ctx.keydown_handler_1);
+				removeListener(input, "blur", ctx.blur_handler);
+			}
+		};
+	}
+
+	// (12:3) {#each items as item, index}
+	function create_each_block(component, ctx) {
+		var if_block_anchor;
+
+		var if_block = (ctx.filter(ctx.item, ctx.currentFilter)) && create_if_block_2(component, ctx);
+
+		return {
+			c() {
+				if (if_block) if_block.c();
+				if_block_anchor = createComment();
+			},
+
+			m(target, anchor) {
+				if (if_block) if_block.m(target, anchor);
+				insert(target, if_block_anchor, anchor);
+			},
+
+			p(changed, ctx) {
+				if (ctx.filter(ctx.item, ctx.currentFilter)) {
+					if (if_block) {
+						if_block.p(changed, ctx);
+					} else {
+						if_block = create_if_block_2(component, ctx);
+						if_block.c();
+						if_block.m(if_block_anchor.parentNode, if_block_anchor);
+					}
+				} else if (if_block) {
+					if_block.d(1);
+					if_block = null;
+				}
+			},
+
+			d(detach) {
+				if (if_block) if_block.d(detach);
+				if (detach) {
+					detachNode(if_block_anchor);
+				}
+			}
+		};
+	}
+
+	// (40:3) {#if numCompleted()}
+	function create_if_block_1(component, ctx) {
+		var button;
+
+		return {
+			c() {
+				button = createElement("button");
+				button.textContent = "Clear completed";
+				addListener(button, "click", ctx.click_handler_4);
+				button.className = "clear-completed";
+			},
+
+			m(target, anchor) {
+				insert(target, button, anchor);
+			},
+
+			d(detach) {
+				if (detach) {
+					detachNode(button);
+				}
+
+				removeListener(button, "click", ctx.click_handler_4);
+			}
+		};
+	}
+
+	function $$create_fragment(component, ctx) {
+		var header, h1, text1, input, text2, if_block_anchor, current;
+
+		var if_block = (ctx.items.length > 0) && create_if_block(component, ctx);
+
+		return {
+			c() {
+				header = createElement("header");
+				h1 = createElement("h1");
+				h1.textContent = "todos";
+				text1 = createText("\n\t");
+				input = createElement("input");
+				text2 = createText("\n\n");
+				if (if_block) if_block.c();
+				if_block_anchor = createComment();
+				addListener(input, "keydown", ctx.keydown_handler);
+				input.className = "new-todo";
+				input.placeholder = "What needs to be done?";
+				input.autofocus = true;
+				header.className = "header";
+			},
+
+			m(target, anchor) {
+				insert(target, header, anchor);
+				append(header, h1);
+				append(header, text1);
+				append(header, input);
+				component.$$refs.todoRef = input;
+				insert(target, text2, anchor);
+				if (if_block) if_block.m(target, anchor);
+				insert(target, if_block_anchor, anchor);
+				current = true;
+				input.focus();
+			},
+
+			p(changed, ctx) {
+				if (ctx.items.length > 0) {
+					if (if_block) {
+						if_block.p(changed, ctx);
+					} else {
+						if_block = create_if_block(component, ctx);
+						if_block.c();
+						if_block.m(if_block_anchor.parentNode, if_block_anchor);
+					}
+				} else if (if_block) {
+					if_block.d(1);
+					if_block = null;
+				}
+			},
+
+			i(target, anchor) {
+				if (current) return;
+
+				this.m(target, anchor);
+			},
+
+			o: run,
+
+			d(detach) {
+				if (detach) {
+					detachNode(header);
+				}
+
+				removeListener(input, "keydown", ctx.keydown_handler);
+				if (component.$$refs.todoRef === input) {
+								component.$$refs.todoRef = null;
+								component.$$.inject_refs(component.$$refs);
+							}
+				if (detach) {
+					detachNode(text2);
+				}
+
+				if (if_block) if_block.d(detach);
+				if (detach) {
+					detachNode(if_block_anchor);
+				}
+			}
+		};
+	}
+
+	function $$init($$self, $$make_dirty) {
+
+		let items = [];
+		let currentFilter = 'all';
+		let editing, todoRef; 
+
+		try {
+			items = JSON.parse(localStorage.getItem('todos-svelte')) || []; $$make_dirty('items');
+		} catch (err) {
+			items = []; $$make_dirty('items');
+		}
+		
+		// computed	
+		const numActive = () => items.filter(item => !item.completed).length;
+		const numCompleted = () => items.filter(item => item.completed).length;
+			
+		// helper
+		const filter = (item, currentFilter) => {
+			if (currentFilter === 'all') return true;
+			if (currentFilter === 'completed') return item.completed;
+			if (currentFilter === 'active') return !item.completed;
+		};
+		
+		// lifecycle
+		onMount(() => {
+			const updateView = () => {
+				currentFilter = 'all'; $$make_dirty('currentFilter');
+				if (window.location.hash === '#/active') {
+					currentFilter = 'active'; $$make_dirty('currentFilter');
+				} else if (window.location.hash === '#/completed') {
+					currentFilter = 'completed'; $$make_dirty('currentFilter');
+				}
+			};
+			window.addEventListener('hashchange', updateView);
+			updateView();
+		});
+
+		afterRender(() => {
+			try {
+				localStorage.setItem('todos-svelte', JSON.stringify(items));
+			} catch (err) {
+				// noop
+			}
+		});
+		
+		// methods
+		const blurNode = node => node.blur();
+		
+		const cancel = () => { const $$result = editing = null; $$make_dirty('editing'); return $$result; };
+
+		const clearCompleted = () => { const $$result = items = items.filter(item => !item.completed); $$make_dirty('items'); return $$result; };
+		
+		const edit = (index) => { const $$result = editing = index; $$make_dirty('editing'); return $$result; };
+			
+		const newTodo = description => {
+			items = [...items, {
+				description,
+				completed: false
+			}]; $$make_dirty('items');
+			todoRef.value = ''; $$make_dirty('todoRef');
+		};
+
+		const remove = index => { const $$result = items = items.splice(index, 1); $$make_dirty('items'); return $$result; };
+			
+		const submit = description => 
+			{ const $$result = items = items.map((v, i) => i === editing ? {...v, description } : v); $$make_dirty('items'); return $$result; }; 
+			
+		const toggleAll = checked => { const $$result = items = items.map(v => ({...v, completed: checked})); $$make_dirty('items'); return $$result; };
+		
+		const handleKeycode = (node, key) => {
+			if (key === "Enter") {
+				blurNode(node);
+				cancel();
+			}		if (key === "Escape") cancel();
+		};
+
+		const updateHash = (e, val) => {
+			e.preventDefault();
+			window.location.hash = val;
+		};
+
+		function keydown_handler({key}) {
+			return key === "Enter" ? newTodo(this.value): null;
+		}
+
+		function change_handler() {
+			return toggleAll(this.checked);
+		}
+
+		function dblclick_handler({ index }) {
+			return edit(index);
+		}
+
+		function click_handler({ index }) {
+			return remove(index);
+		}
+
+		function keydown_handler_1({key}) {
+			return handleKeycode(this, key);
+		}
+
+		function blur_handler(e) {
+			return submit(this.value);
+		}
+
+		function click_handler_1(e) {
+			return updateHash(e, "#/");
+		}
+
+		function click_handler_2(e) {
+			return updateHash(e, "#/active");
+		}
+
+		function click_handler_3(e) {
+			return updateHash(e, "#/completed");
+		}
+
+		function click_handler_4() {
+			return clearCompleted();
+		}
+
+		function input_change_handler({ item, each_value, index }) {
+			each_value[index].completed = this.checked;
+			$$make_dirty('items');
+		}
+
+		return [
+			// TODO only what's needed by the template
+			() => ({ items, currentFilter, editing, todoRef, numActive, numCompleted, filter, blurNode, cancel, clearCompleted, edit, newTodo, remove, submit, toggleAll, handleKeycode, updateHash, onMount, afterRender, keydown_handler, change_handler, dblclick_handler, click_handler, keydown_handler_1, blur_handler, click_handler_1, click_handler_2, click_handler_3, click_handler_4, input_change_handler }),
+			noop,
+			$$refs => {
+				todoRef = $$refs.todoRef;
+			}
+		];
+	}
+
+	class App extends $$Component {
+		constructor(options) {
+			super(options, $$init, $$create_fragment, safe_not_equal);
+		}
+
+
+	}
+
+	const app = new App({
+	  target: document.querySelector(".todoapp"),
+	  name: "Todo"
+	});
+
+	return app;
+
+}());
 //# sourceMappingURL=bundle.js.map
