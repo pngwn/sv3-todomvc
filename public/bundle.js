@@ -750,16 +750,18 @@ var Todo = (function () {
 
 	function $$init($$self, $$make_dirty) {
 
-		let items = [];
+		const getItems = () => {
+			try {
+				return JSON.parse(localStorage.getItem('todos-svelte')) || [];
+			} catch (err) {
+				return [];
+			}
+		};
+
+		let items = getItems();
 		let currentFilter = 'all';
 		let editing, todoRef; 
 
-		try {
-			items = JSON.parse(localStorage.getItem('todos-svelte')) || []; $$make_dirty('items');
-		} catch (err) {
-			items = []; $$make_dirty('items');
-		}
-		
 		// computed	
 		const numActive = () => items.filter(item => !item.completed).length;
 		const numCompleted = () => items.filter(item => item.completed).length;
@@ -876,7 +878,7 @@ var Todo = (function () {
 
 		return [
 			// TODO only what's needed by the template
-			() => ({ items, currentFilter, editing, todoRef, numActive, numCompleted, filter, blurNode, cancel, clearCompleted, edit, newTodo, remove, submit, toggleAll, handleKeycode, updateHash, onMount, afterRender, keydown_handler, change_handler, dblclick_handler, click_handler, keydown_handler_1, blur_handler, click_handler_1, click_handler_2, click_handler_3, click_handler_4, input_change_handler }),
+			() => ({ getItems, items, currentFilter, editing, todoRef, numActive, numCompleted, filter, blurNode, cancel, clearCompleted, edit, newTodo, remove, submit, toggleAll, handleKeycode, updateHash, onMount, afterRender, keydown_handler, change_handler, dblclick_handler, click_handler, keydown_handler_1, blur_handler, click_handler_1, click_handler_2, click_handler_3, click_handler_4, input_change_handler }),
 			noop,
 			$$refs => {
 				todoRef = $$refs.todoRef;

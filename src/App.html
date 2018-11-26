@@ -49,16 +49,18 @@
 <script>
 	import { onMount, afterRender } from 'svelte';
 
-	let items = [];
+	const getItems = () => {
+		try {
+			return JSON.parse(localStorage.getItem('todos-svelte')) || [];
+		} catch (err) {
+			return [];
+		}
+	};
+
+	let items = getItems();
 	let currentFilter = 'all';
 	let editing, todoRef; 
 
-	try {
-		items = JSON.parse(localStorage.getItem('todos-svelte')) || [];
-	} catch (err) {
-		items = [];
-	}
-	
 	// computed	
 	const numActive = () => items.filter(item => !item.completed).length;
 	const numCompleted = () => items.filter(item => item.completed).length;
